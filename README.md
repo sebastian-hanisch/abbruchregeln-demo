@@ -1,7 +1,6 @@
 # Abbruchregeln: wann man aufhören darf – Streamlit-Demo
 
-<!-- TODO nach dem Deploy: direkt hierher den Live-Link setzen (Leerzeile davor und danach):
-**[→ Demo live ausprobieren](https://sebastianhanisch-abbruchregeln-demo.streamlit.app/)** -->
+**[→ Demo live ausprobieren](https://sebastianhanisch-abbruchregeln-demo.streamlit.app/)**
 
 Vierzehntes Stück der Linie **„Monte-Carlo-Schätzung und Varianzreduktion“** in der „Konzepte“-Reihe für die Website „Sebastian Hanisch – Operations Research und Machine Learning“ (die Linie wird erst vollständig veröffentlicht). Nachfolger von [geschachtelte-erwartungen-demo](https://github.com/sebastian-hanisch/geschachtelte-erwartungen-demo) (Stück 13) und Weiterführung von [monte-carlo-schaetzer-demo](https://github.com/sebastian-hanisch/monte-carlo-schaetzer-demo) (Stück 1, Intervalle zum festen Umfang): Hier geht es um das **Aufhören**. Eine Simulation läuft, bis „es reicht“; die Demo misst, was dabei mit den Intervallen und Tests passiert. Vehikel ist die **Zuverlässigkeit der Netze der Reihe** (Hantel, Gitter 3×3 und 3×4); Ausfallwahrscheinlichkeit und p-Wert sind exakt aus der Aufzählung aller Kantenmengen bekannt.
 
@@ -126,4 +125,4 @@ Gebaut mit Streamlit, Plotly, NumPy und fpdf2.
 
 ---
 
-Diese Demo ist Teil des Portfolios von [Sebastian Hanisch](https://sebastianhanisch.net) – Operations Research und Machine Learning ([Über mich](https://sebastianhanisch.net/ueber-mich.html)). Mehr zu den Demos: [Interaktive Demos](https://sebastianhanisch.net/demos.html).
+Diese Demo ist Teil des Portfolios von [Sebastian Hanisch](https://sebastianhanisch.net) – Operations Research und Machine Learning ([Über mich](https://sebastianhanisch.net/ueber-mich.html)). Mehr zur Reihe: [Monte-Carlo-Schätzung: vom Schätzer zur Wahl](https://sebastianhanisch.net/konzepte-monte-carlo.html).
