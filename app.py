@@ -77,9 +77,22 @@ Eine Simulation läuft, bis »es reicht«. Die **Intervalle der bisherigen Stüc
 **Jederzeit gültige Konfidenzfolgen** halten die Abdeckung bei beliebigem Anhalten und kosten dafür etwa das Drei- bis Fünffache an Proben; nur die nicht asymptotischen halten auch bei seltenen Ereignissen. Die Regel **»bis die relative Genauigkeit erreicht ist«** ist mit Schutz gegen null Ereignisse brauchbar, die **absolute** nicht, wenn Ereignisse selten sind.
 Ein **Monte-Carlo-Test** (stimmt die Ausfallwahrscheinlichkeit mit der Spezifikation?) kann sein Entscheidungsrisiko beschränken, bezahlt es aber **an der Schwelle**.
 
+Wer die Idee ohne Fachwörter lesen möchte, öffnet **💬 In einfachen Worten** und findet dort auch den Link auf die ausführliche Erklärseite.
+
 Weiter unten: **🔬 fünf Experimente**, **🧪 Spielwiese**, **🚧 Wo die Annahmen enden** und die Expander **⚠️ Annahmen, Grenzen und bekannte Probleme** und **📐 Mathematische Formulierung**.
 """
 )
+
+# erklaerseite:einfach:start (erzeugt von tools/set_demo_explainer.py (Website-Repo) aus tools/content/explainers/hinsehen-aufhoeren-erklaert.json, nicht von Hand ändern)
+with st.expander("💬 In einfachen Worten"):
+    st.markdown(
+        """
+Eine Simulation läuft, und man hört auf, sobald das Ergebnis gut genug aussieht. Die übliche Fehlerspanne um das Ergebnis verspricht aber nur dann eine kleine Fehlerquote, wenn die Zahl der Versuche vorher feststeht. Wer nach jedem Versuch nachsieht und anhält, sobald es passt, sucht sich einen günstigen Moment aus: Der Zufall lässt den Wert schwanken, und irgendwann liegt die Wahrheit außerhalb der Fehlerspanne. Die Demo misst das an erfundenen Netzen, deren richtige Antwort genau bekannt ist. **Jederzeit gültige Konfidenzfolgen** sind breiter gebaut, sodass das Versprechen für alle Zeitpunkte zugleich gilt. Dafür brauchen sie etwa das Drei- bis Fünffache an Versuchen. Ein Haken bleibt: Wird ein Test knapp an der Grenze entschieden, wird er sehr teuer.
+
+[Ausführlich und verständlich erklärt, mit Fachteil](https://sebastianhanisch.net/hinsehen-aufhoeren-erklaert.html)
+        """
+    )
+# erklaerseite:einfach:end
 
 with st.expander("So funktionieren die Regeln", expanded=True):
     st.markdown(
@@ -261,6 +274,27 @@ Die Literaturangaben (Waudby-Smith u. a. 2024, Gandy 2009, Fischer und Ramdas 20
 st.markdown("---")
 
 with st.expander("📐 Mathematische Formulierung"):
+    # erklaerseite:lesehilfe:start (erzeugt von tools/set_demo_explainer.py (Website-Repo) aus tools/content/explainers/hinsehen-aufhoeren-erklaert.json, nicht von Hand ändern)
+    st.markdown(
+        r"""
+**Lesehilfe.** Gegeben ist eine Folge von Ja-Nein-Ausgängen $X_1, X_2, \dots$ mit unbekannter Wahrscheinlichkeit $\pi$. Gesucht ist ein Bereich für $\pi$, der die Wahrheit mit Wahrscheinlichkeit mindestens $1-\alpha$ enthält, und zwar auch dann, wenn man nach jeder Probe nachsieht und beliebig anhält.
+
+| Symbol | Bedeutung |
+|---|---|
+| $X_i$ | Ausgang der $i$-ten Probe (1 = Ereignis, 0 = kein Ereignis) |
+| $S_n$, $\hat p_n$ | Zahl der Ereignisse nach $n$ Proben und Anteil $S_n/n$ |
+| $\pi$ | wahre Wahrscheinlichkeit des Ereignisses (bzw. der exakte p-Wert beim Test) |
+| $z$ | Quantil der Normalverteilung zum gewählten Niveau |
+| $\alpha$ | zugesagte Fehlerwahrscheinlichkeit (bzw. Testniveau) |
+| $L_n(m)$ | Verhältnis der Mischwahrscheinlichkeit zur Wahrscheinlichkeit unter $\pi=m$ |
+| $B$ | Beta-Funktion |
+| $\varepsilon$, $n^*$ | geforderte relative Genauigkeit, Orakelumfang (Umfang, der bei bekanntem $\pi$ nötig wäre) |
+| $k$, $n_k$ | Zahl der Ereignisse, bei der man anhält, und Zahl der Proben bis dahin |
+
+[Schritt für Schritt erklärt, mit Herleitung und Literatur](https://sebastianhanisch.net/hinsehen-aufhoeren-erklaert.html#fachleute)
+        """
+    )
+    # erklaerseite:lesehilfe:end
     st.markdown(
         r"""
 **Folge.** $X_1,X_2,\dots$ unabhängig Bernoulli($\pi$); $S_n=\sum_{i\le n}X_i$, $\hat p_n=S_n/n$. Schätzung: $\pi=U=\mathbb P(T\ge2)$, $T$ die Komponentenzahl nach Kantenausfall. Test: $\pi=\mathbb P_{H_0}(T\ge T_{\rm obs})$, $X_i=\mathbf 1[T_i\ge T_{\rm obs}]$.
