@@ -48,6 +48,6 @@ PRESET_HELP = {
     "Standardfall (Voreinstellung)": "Gitter 3×3, Haltewahrscheinlichkeit 0,9 je Kante: die Ausfallwahrscheinlichkeit liegt bei 0,053, fast genau auf dem Testniveau 0,05. Hinsehen bei jedem n verfälscht das Wald-Intervall; der Test an der Schwelle ist teuer.",
     "Seltene Ausfälle": "Bei Haltewahrscheinlichkeit 0,95 liegt die Ausfallwahrscheinlichkeit bei 0,012: die asymptotische Konfidenzfolge versagt, die absolute Abbruchregel stoppt oft mit null Ereignissen.",
     "Knapp an der Schwelle": "Gitter 3×3, p = 0,7, mindestens vier Komponenten: der exakte p-Wert ist 0,0494, knapp unter 0,05. Kein Verfahren entscheidet billig und sicher zugleich.",
-    "Hantel mit Brücke": "Bei der Hantel hängt fast alles an der Brücke: die Ausfallwahrscheinlichkeit ist groß (0,15), Ereignisse sind häufig, und die Verfahren verhalten sich gutmütig.",
+    "Hantel mit Brücke": "Bei der Hantel hängt fast alles an der Brücke: die Ausfallwahrscheinlichkeit ist groß (0,15), Ereignisse sind häufig: die asymptotische Folge und die absolute Regel halten, das Hinsehen mit Wald oder Wilson aber nicht.",
     "Lockere Genauigkeit": "Mit relativer Genauigkeit 0,5 stoppt die Regel früh, und die Schätzung ist nach oben verzerrt (etwa +7 %).",
 }

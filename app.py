@@ -2,7 +2,7 @@
 Sebastian Hanisch - Operations Research und Machine Learning
 
 Stück 14 der Linie "Monte-Carlo-Schätzung und Varianzreduktion": Eine Simulation läuft, bis es reicht. Intervalle zum festen Umfang verlieren beim Hinsehen und Anhalten ihre Abdeckung; jederzeit gültige
-Konfidenzfolgen halten sie und kosten etwa das Drei- bis Fünffache an Proben; die Regel »bis die relative Genauigkeit erreicht ist« ist brauchbar, die absolute ohne Schutz gegen null Ereignisse nicht; ein
+Konfidenzfolgen halten sie und kosten etwa das Drei- bis Fünffache an Proben; die Regel »bis die relative Genauigkeit erreicht ist« ist brauchbar, die absolute ohne Schutz gegen null Ereignisse nicht, wenn Ereignisse selten sind; ein
 Monte-Carlo-Test kann sein Entscheidungsrisiko beschränken und bezahlt es an der Schwelle. Vehikel ist die Zuverlässigkeit der Netze der Reihe; alle Wahrheiten sind exakt aufgezählt.
 
 Lauffähig mit: streamlit run app.py
@@ -73,8 +73,8 @@ with st.container(key="kopf"):
     st.title("🛑 Abbruchregeln: wann man aufhören darf")
 st.markdown(
     """
-Eine Simulation läuft, bis »es reicht«. Die **Intervalle der bisherigen Stücke** sind für einen **festen Umfang** gebaut: wer **bei jedem n hinsieht** und anhält, sobald etwas passt, verliert ihre Abdeckung (die Wahrheit liegt irgendwann außerhalb, obwohl sie bei jedem einzelnen n zu 95 % drin liegt).
-**Jederzeit gültige Konfidenzfolgen** halten die Abdeckung bei beliebigem Anhalten und kosten dafür etwa das Drei- bis Fünffache an Proben; nur die nicht asymptotischen halten auch bei seltenen Ereignissen. Die Regel **»bis die relative Genauigkeit erreicht ist«** ist mit Schutz gegen null Ereignisse brauchbar, die **absolute** nicht.
+Eine Simulation läuft, bis »es reicht«. Die **Intervalle der bisherigen Stücke** sind für einen **festen Umfang** gebaut: wer **bei jedem n hinsieht** und anhält, sobald etwas passt, verliert ihre Abdeckung (die Wahrheit liegt irgendwann außerhalb, obwohl sie bei einem einzelnen großen n etwa zu 95 % drin liegt).
+**Jederzeit gültige Konfidenzfolgen** halten die Abdeckung bei beliebigem Anhalten und kosten dafür etwa das Drei- bis Fünffache an Proben; nur die nicht asymptotischen halten auch bei seltenen Ereignissen. Die Regel **»bis die relative Genauigkeit erreicht ist«** ist mit Schutz gegen null Ereignisse brauchbar, die **absolute** nicht, wenn Ereignisse selten sind.
 Ein **Monte-Carlo-Test** (stimmt die Ausfallwahrscheinlichkeit mit der Spezifikation?) kann sein Entscheidungsrisiko beschränken, bezahlt es aber **an der Schwelle**.
 
 Weiter unten: **🔬 fünf Experimente**, **🧪 Spielwiese**, **🚧 Wo die Annahmen enden** und die Expander **⚠️ Annahmen, Grenzen und bekannte Probleme** und **📐 Mathematische Formulierung**.
@@ -127,7 +127,7 @@ m2.metric("Wald, irgendwann außerhalb", pr(a.peek["wald"]["ever"]), delta=f"bei
 m3.metric("Beta-Folge, irgendwann außerhalb", pr(a.peek["beta"]["ever"]), delta="nominell höchstens 0,05", delta_color="off", help="Dasselbe für die jederzeit gültige Beta-Mischungs-Folge.")
 m4.metric("Exakter p-Wert (Test)", pi_text(a.pi_test), delta=f"P(T ≥ {settings.tobs})", delta_color="off", help="Wahrscheinlichkeit von mindestens T_obs Komponenten unter dem Modell (Experiment 5).")
 st.plotly_chart(build_peek(a), width="stretch", key="main_chart")
-st.caption("Anteil der Läufe, in denen die Wahrheit bei irgendeinem n zwischen 30 und 10.000 außerhalb des Intervalls liegt. Bei jedem einzelnen n wären es 5 %; wer bei jedem n hinsieht, trifft viel öfter einen Fehlgriff.")
+st.caption("Anteil der Läufe, in denen die Wahrheit bei irgendeinem n zwischen 30 und 10.000 außerhalb des Intervalls liegt. Bei einem einzelnen großen n wären es etwa 5 %; wer bei jedem n hinsieht, trifft viel öfter einen Fehlgriff.")
 
 if st.button("📄 PDF der Auswertung erstellen", key="pdf_make"):
     st.session_state["pdf_made"] = (settings, build_pdf(settings, a))
@@ -235,12 +235,12 @@ st.markdown(
     """
 | Annahme | Was passiert, wenn sie verletzt ist | Wer setzt an |
 |---|---|---|
-| **Der Umfang steht vorher fest** | Wer bei jedem n hinsieht und anhält, hat mit Wald oder Wilson die Wahrheit in 47 bis 85 % der Läufe irgendwann außerhalb (Experiment 1). | Experimente 4 (A/B-Tests) |
+| **Der Umfang steht vorher fest** | Wer bei jedem n hinsieht und anhält, hat mit Wald oder Wilson die Wahrheit in etwa 46 bis 82 % der Läufe irgendwann außerhalb (Experiment 1, über alle wählbaren Netze und p). | Experimente 4 (A/B-Tests) |
 | **Das Intervall ist nicht asymptotisch** | Die asymptotische Konfidenzfolge versagt bei seltenen Ereignissen (Preset »Seltene Ausfälle«); nur die Beta-Mischung hält bei jedem n. | – |
 | **Zeit-Gleichmäßigkeit ist kostenlos** | Sie kostet 1,6- bis 2,2-fache Breite, also drei- bis fünfmal so viele Proben (Experiment 2). | – |
-| **Die Abbruchregel ist relativ** | Die absolute Halbbreite stoppt bei seltenen Ereignissen mit null Ereignissen (Experiment 3); die relative Regel ist leicht nach oben verzerrt, bei lockerer Genauigkeit stark (Preset »Lockere Genauigkeit«). | Stück 1 |
+| **Die Abbruchregel ist relativ** | Die absolute Halbbreite stoppt bei seltenen Ereignissen mit null Ereignissen (Experiment 3); die relative Regel ist leicht nach oben verzerrt, bei lockerer Genauigkeit spürbar (+7 bis +10 %; Preset »Lockere Genauigkeit«). | Stück 1 |
 | **Stopp nach k Ereignissen mit k/n** | k/n ist nach oben verzerrt; (k − 1)/(n − 1) nicht (Experiment 4). | – |
-| **Das Testrisiko ist beschränkt** | Es lässt sich beschränken, aber die Kosten wachsen wie 1/(π − α)², und bei π = α entscheidet kein Verfahren (Experiment 5, Preset »Knapp an der Schwelle«). | – |
+| **Das Testrisiko ist beschränkt** | Es lässt sich beschränken, aber die Kosten wachsen wie 1/(π − α)², und bei π = α entscheidet kein Verfahren zuverlässig (Experiment 5, Preset »Knapp an der Schwelle«). | – |
 """
 )
 
