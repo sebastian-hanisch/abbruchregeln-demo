@@ -248,12 +248,12 @@ st.markdown(
     """
 | Annahme | Was passiert, wenn sie verletzt ist | Wer setzt an |
 |---|---|---|
-| **Der Umfang steht vorher fest** | Wer bei jedem n hinsieht und anhält, hat mit Wald oder Wilson die Wahrheit in etwa 46 bis 82 % der Läufe irgendwann außerhalb (Experiment 1, über alle wählbaren Netze und p). | Experimente 4 (A/B-Tests) |
+| **Der Umfang steht vorher fest** | Wer bei jedem n hinsieht und anhält, hat mit Wald oder Wilson die Wahrheit in 50 bis 81 % der Läufe irgendwann außerhalb (Experiment 1, die fünf gemessenen Fälle der README; für andere Netze und p nicht gemessen). | Experimente 4 (A/B-Tests) |
 | **Das Intervall ist nicht asymptotisch** | Die asymptotische Konfidenzfolge versagt bei seltenen Ereignissen (Preset »Seltene Ausfälle«); nur die Beta-Mischung hält bei jedem n. | – |
 | **Zeit-Gleichmäßigkeit ist kostenlos** | Sie kostet 1,6- bis 2,2-fache Breite, also drei- bis fünfmal so viele Proben (Experiment 2). | – |
 | **Die Abbruchregel ist relativ** | Die absolute Halbbreite stoppt bei seltenen Ereignissen mit null Ereignissen (Experiment 3); die relative Regel ist leicht nach oben verzerrt, bei lockerer Genauigkeit spürbar (+7 bis +10 %; Preset »Lockere Genauigkeit«). | Stück 1 |
 | **Stopp nach k Ereignissen mit k/n** | k/n ist nach oben verzerrt; (k − 1)/(n − 1) nicht (Experiment 4). | – |
-| **Das Testrisiko ist beschränkt** | Es lässt sich beschränken, aber die Kosten wachsen wie 1/(π − α)², und bei π = α entscheidet kein Verfahren zuverlässig (Experiment 5, Preset »Knapp an der Schwelle«). | – |
+| **Das Testrisiko ist beschränkt** | Es lässt sich beschränken, aber die Kosten wachsen bis auf einen logarithmischen Faktor wie 1/(π − α)², und bei π = α entscheidet kein Verfahren zuverlässig (Experiment 5, Preset »Knapp an der Schwelle«). | – |
 """
 )
 
@@ -308,7 +308,7 @@ Hoeffding-Mischung: Mischung über $\lambda\sim N(0,\tau^2)$ der subgaußschen E
 **Abbruchregeln.** Relativ: halte bei $\hat p>0$ und $h_n\le\varepsilon\hat p_n$; Orakelumfang $n^*=z^2(1-\pi)/(\varepsilon^2\pi)$. Absolut: halte bei $h_n\le h$; bei $S_n=0$ ist die Wald-Halbbreite null. Inverse Stichprobe: $n_k$ negativ binomial; $\mathbb E[(k-1)/(n_k-1)]=\pi$ (exakt), $\mathbb E[k/n_k]>\pi$.
 
 **Monte-Carlo-Test.** $\hat p=(1+S_n)/(1+n)$, Ablehnen bei $\hat p\le\alpha$. **Entscheidungsrisiko** $=\mathbb P(\text{Entscheidung}\ne\mathbf 1[\pi\le\alpha])$; beim festen $n$ aus der Binomialverteilung exakt. Besag–Clifford: halte beim $h$-ten Ausschlag (dann $\hat p=h/n$) oder bei $n_{\max}$ (dann $(S+1)/(n_{\max}+1)$).
-Konfidenzfolgen-Entscheidung: halte, sobald $\alpha\notin$ Folge zum Niveau $\delta$; das Risiko ist durch $\delta$ beschränkt, die erwartete Zahl der Schritte wächst wie $1/(\pi-\alpha)^2$.
+Konfidenzfolgen-Entscheidung: halte, sobald $\alpha\notin$ Folge zum Niveau $\delta$; das Risiko ist durch $\delta$ beschränkt, die erwartete Zahl der Schritte wächst bis auf einen logarithmischen Faktor wie $1/(\pi-\alpha)^2$.
 
 **Literatur (aus dem Gedächtnis, wenn nicht anders vermerkt).** Waudby-Smith, Arbour, Sinha, Kennedy und Ramdas 2024, „Time-uniform central limit theory and asymptotic confidence sequences“ (Annals of Statistics; arXiv 2103.06476, nur Abstract eingesehen); Gandy 2009, „Sequential implementation of Monte Carlo tests with uniformly bounded resampling risk“ (JASA; arXiv math/0612488, nur Abstract eingesehen);
 Fischer und Ramdas 2024, „Sequential Monte-Carlo testing by betting“ (arXiv 2401.07365, nur Abstract eingesehen); Besag und Clifford 1991, „Sequential Monte Carlo p-values“ (Biometrika); Robbins 1970 (Mischungsfolgen); Howard, Ramdas, McAuliffe und Sekhon 2021 (Konfidenzfolgen).
